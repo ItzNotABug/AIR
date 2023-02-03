@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">AIR</string>
+
+    <string name="check">Check</string>
+    <string name="adid_reset_prefix">Ad Id Reset %s</string>
+
+    <string name="gms_installed">GMS Installed ✅</string>
+    <string name="gms_not_installed">GMS Not Installed ❌</string>
+
+    <string name="adid_file_found">Ad Id file found ✅</string>
+    <string name="adid_file_not_found">No files found storing given Ad Id ❌</string>
+
+    <string name="adid">Advertising Identifier:\n%s</string>
+    <string name="reset_ad_button_text">Reset Ad Id</string>
+    <string name="paste_adid_button_text">Paste Again</string>
+    <string name="placeholder_adid" tools:ignore="TypographyDashes">38400000-8cf0-11bd-b23e-10b96e40000d</string>
+
+    <string name="adid_does_not_exist">
+        Ad Id does not exist, probably recently deleted.
+        \nYou can generate one by opening any Ad supported App.
+    </string>
+
+    <string name="paste_adid">
+        Paste your Advertising Identifier.
+        \nThis is a one time operation.
+        \n\nMake sure not to remove the dashes (-).
+    </string>
+
+    <string name="root_access_required">AIR requires Root Access to function!</string>
+    <string name="root_access_required_desc">Open your Root Manager App
+        \n(Magisk, SuperSU) &amp; allow Root Access to AIR.</string>
+</resources>
