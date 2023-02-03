@@ -1,4 +1,4 @@
-package com.lazygeniouz.air.layouts
+package com.lazygeniouz.air.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
