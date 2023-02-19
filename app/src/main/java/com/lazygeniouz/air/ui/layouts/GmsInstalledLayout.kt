@@ -1,4 +1,4 @@
-package com.lazygeniouz.air.layouts
+package com.lazygeniouz.air.ui.layouts
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.runtime.*

@@ -9,8 +9,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.lazygeniouz.air.data.viewmodel.AdIdViewModel
-import com.lazygeniouz.air.layouts.GmsInstalledLayout
-import com.lazygeniouz.air.layouts.NoGmsLayout
+import com.lazygeniouz.air.ui.layouts.GmsInstalledLayout
+import com.lazygeniouz.air.ui.layouts.NoGmsLayout
 import com.lazygeniouz.air.ui.components.OnResumeEvent
 import com.lazygeniouz.air.ui.components.RootNotAvailable
 import com.lazygeniouz.air.ui.theme.ThemedSurface
