@@ -9,7 +9,7 @@ import com.lazygeniouz.air.ui.components.*
  * Layout that is shown on devices that do have GMS installed.
  */
 @Composable
-fun GmsInstalledLayout(adIdViewModel: AdIdViewModel) {
+fun GmsLayout(adIdViewModel: AdIdViewModel) {
     val advertisingId by remember { mutableStateOf(adIdViewModel.getAdIdFromFile()) }
     var isAdIdFileExists by remember { mutableStateOf(adIdViewModel.isAdIdFileExists()) }
 

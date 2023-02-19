@@ -9,10 +9,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.lazygeniouz.air.data.viewmodel.AdIdViewModel
-import com.lazygeniouz.air.ui.layouts.GmsInstalledLayout
-import com.lazygeniouz.air.ui.layouts.NoGmsLayout
 import com.lazygeniouz.air.ui.components.OnResumeEvent
 import com.lazygeniouz.air.ui.components.RootNotAvailable
+import com.lazygeniouz.air.ui.layouts.GmsLayout
+import com.lazygeniouz.air.ui.layouts.NoGmsLayout
 import com.lazygeniouz.air.ui.theme.ThemedSurface
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +34,7 @@ fun AdIdResetApp(adIdViewModel: AdIdViewModel) {
         RootNotAvailable()
         OnResumeEvent { isRootAvailable = adIdViewModel.isRootAvailable() }
     } else {
-        if (adIdViewModel.isGmsInstalled) GmsInstalledLayout(adIdViewModel)
+        if (adIdViewModel.isGmsInstalled) GmsLayout(adIdViewModel)
         else NoGmsLayout(adIdViewModel)
     }
 }
