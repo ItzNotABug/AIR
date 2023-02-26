@@ -1,7 +1,9 @@
 # AIR
 
 AIR is short for **Advertising Identifier Reset**.\
-A utility app for **Rooted Devices** to clear / reset Advertising Identifier.
+A utility app for **Rooted Devices** to clear / reset Advertising Identifier.\
+AIR also supports periodic identifier resets via `WorkManager` api. Can be enabled / disabled via
+Settings tab.
 
 The App handles all the device formats i.e.
 
@@ -14,8 +16,9 @@ For devices with GMS Installed, the process is pretty straightforward which simp
 file `adid_settings.xml`!
 
 On devices without GMS, you'll have to paste the `Advertising Identifier` ***once*** so that the app
-can traverse the filesystem & store the path of the file that contains the identifier. This is used
-then to fetch the identifier which can be deleted anytime (if it exists).\
+can traverse the filesystem & store the path of the file that contains the identifier.\
+This is used then to fetch the identifier which can be deleted anytime (if it exists).
+
 **Note:** There can be instances where multiple files contain the provided identifier, the path of
 the first file is used in that case.\
 Yes I do plan to do something about that in the future.
@@ -29,7 +32,3 @@ Yes I do plan to do something about that in the future.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/20625965/216534765-fa9189a8-79ce-4c99-b815-838316be5bcd.jpeg" width=50% height=50%>
 </p>
-
-## TODO
-
-- Add `WorkManager` support for periodically resetting the Advertising Identifier.
