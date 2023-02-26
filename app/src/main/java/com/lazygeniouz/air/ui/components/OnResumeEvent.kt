@@ -10,6 +10,9 @@ import androidx.lifecycle.LifecycleEventObserver
 /**
  * Invokes [onResumeEvent] everytime the [Lifecycle] hits [Lifecycle.Event.ON_RESUME] to update
  * certain values or fields.
+ *
+ * If you check the root status or perform any root based op, you'll see
+ * **"AIR was granted Superuser rights"** on every onResume event.
  */
 @Composable
 fun OnResumeEvent(onResumeEvent: () -> Unit) {
