@@ -12,6 +12,9 @@ import com.lazygeniouz.air.utils.misc.isGmsInstalled
 import com.lazygeniouz.air.utils.root.RootHelper
 import java.util.concurrent.TimeUnit
 
+/**
+ * A worker to periodically delete the Advertising Identifier.
+ */
 class AdIdResetWorker(
     context: Context,
     workerParams: WorkerParameters,
@@ -48,6 +51,9 @@ class AdIdResetWorker(
     companion object {
         private const val workKey = "adIdResetWorker"
 
+        /**
+         * Schedule a [AdIdResetWorker] or update it as required.
+         */
         fun schedule(context: Context, isUpdate: Boolean) {
             val adIdResetWorker = getPeriodicWorkRequest(context)
             val manager = WorkManager.getInstance(context)
@@ -58,6 +64,9 @@ class AdIdResetWorker(
             manager.enqueueUniquePeriodicWork(workKey, workPolicy, adIdResetWorker)
         }
 
+        /**
+         * Cancel all the workers.
+         */
         fun cancel(context: Context) {
             WorkManager.getInstance(context).cancelAllWork()
         }

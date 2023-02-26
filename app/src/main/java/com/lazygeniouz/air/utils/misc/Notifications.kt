@@ -13,6 +13,9 @@ import com.lazygeniouz.air.utils.misc.Constants.CHANNEL_DESCRIPTION
 import com.lazygeniouz.air.utils.misc.Constants.CHANNEL_NAME
 import com.lazygeniouz.air.utils.misc.Constants.DEFAULT_CHANNEL_ID
 
+/**
+ * Utility class to post notifications if allowed.
+ */
 class Notifications(private val context: Context) {
 
     private val notificationManager by lazy { NotificationManagerCompat.from(context) }

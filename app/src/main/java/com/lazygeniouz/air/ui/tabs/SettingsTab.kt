@@ -33,6 +33,9 @@ import com.lazygeniouz.air.utils.work.AdIdResetWorker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * The settings tab that allows setting up periodic Ad Id resets.
+ */
 @Composable
 fun SettingsTab() {
 
@@ -62,7 +65,10 @@ fun SettingsTab() {
                 if (permissionGranted) {
                     if (!isSelected) AdIdResetWorker.cancel(localContext)
                     else AdIdResetWorker.schedule(localContext, false)
-                } else localContext.requestNotificationsPermission()
+                } else {
+                    enabledState.value = false
+                    localContext.requestNotificationsPermission()
+                }
             }
         )
 

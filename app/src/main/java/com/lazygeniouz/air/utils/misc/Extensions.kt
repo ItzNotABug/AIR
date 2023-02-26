@@ -16,6 +16,9 @@ import com.lazygeniouz.air.utils.misc.Constants.gmsPackageName
 
 const val TAG = "AdIdResetApp"
 
+/**
+ * Log relevant stuff to logcat.
+ */
 fun logDebug(vararg msg: Any?) {
     if (msg.isEmpty()) return
 
@@ -27,14 +30,23 @@ fun logDebug(vararg msg: Any?) {
     Log.d(TAG, message)
 }
 
+/**
+ * Get the shared preference with provided name.
+ */
 fun Context.getSettings(name: String): SharedPreferences {
     return getSharedPreferences(name, Context.MODE_PRIVATE)
 }
 
+/**
+ * Show a message via a Toast.
+ */
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
+/**
+ * Check if the `Google Mobile Services` is installed on the device.
+ */
 fun Context.isGmsInstalled(): Boolean {
     return try {
         val applicationInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -51,6 +63,9 @@ fun Context.isGmsInstalled(): Boolean {
     }
 }
 
+/**
+ * Check if the notification permission is granted on or above Android Tiramisu.
+ */
 fun Context.notificationPermissionsGranted(): Boolean {
     return if (isAboveOrOnAndroidT) {
         ContextCompat.checkSelfPermission(
@@ -59,6 +74,9 @@ fun Context.notificationPermissionsGranted(): Boolean {
     } else true
 }
 
+/**
+ * Request the notification permission on or above Android Tiramisu.
+ */
 fun Context.requestNotificationsPermission() {
     if (isAboveOrOnAndroidT) {
         ActivityCompat.requestPermissions(
@@ -67,15 +85,27 @@ fun Context.requestNotificationsPermission() {
     }
 }
 
+/**
+ * Check if the device is on or above Android Tiramisu.
+ */
 val isAboveOrOnAndroidT get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 
+/**
+ * Get the default shared preferences.
+ */
 val Context.defaultPreferences get() = getSettings("${packageName}_preferences")
 
+/**
+ * An empty PendingIntent to cancel the notification on click.
+ */
 val Context.emptyPendingIntent: PendingIntent
     get() = PendingIntent.getActivity(
         this, System.currentTimeMillis().toInt(), Intent(), pendingIntentFlag
     )
 
+/**
+ * Get a relevant PendingIntent flag depending on SDK version.
+ */
 private val pendingIntentFlag: Int
     get() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
