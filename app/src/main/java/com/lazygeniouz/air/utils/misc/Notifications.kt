@@ -21,6 +21,8 @@ class Notifications(private val context: Context) {
     private val notificationManager by lazy { NotificationManagerCompat.from(context) }
 
     fun notify(@StringRes titleResourceId: Int, @StringRes messageResourceId: Int) {
+        if (!context.userNotificationsEnabled) return
+
         val notification = buildNotification(titleResourceId, messageResourceId)
         notify(notification)
     }

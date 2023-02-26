@@ -24,6 +24,8 @@ object Constants {
 
     const val periodicResetEnabledKey = "periodic_reset_enabled"
     const val periodicResetIntervalKey = "periodic_reset_interval"
+    const val periodicResetNotificationsKey = "periodic_reset_notifications"
+
     val periodicResetIntervals = listOf(
         "15 Min." to TimeUnit.MINUTES.toMillis(15),
         "30 Min." to TimeUnit.MINUTES.toMillis(30),

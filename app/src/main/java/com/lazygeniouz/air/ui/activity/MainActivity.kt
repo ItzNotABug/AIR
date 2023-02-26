@@ -18,7 +18,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.alorma.compose.settings.storage.base.getValue
-import com.alorma.compose.settings.storage.preferences.rememberPreferenceBooleanSettingState
 import com.lazygeniouz.air.data.viewmodel.AdIdViewModel
 import com.lazygeniouz.air.nav.AirNavHost
 import com.lazygeniouz.air.nav.Screen
@@ -26,6 +25,8 @@ import com.lazygeniouz.air.ui.components.OnResumeEvent
 import com.lazygeniouz.air.ui.components.RootNotAvailable
 import com.lazygeniouz.air.ui.theme.ThemedSurface
 import com.lazygeniouz.air.utils.misc.Constants
+import com.lazygeniouz.air.utils.misc.OneShotEffect
+import com.lazygeniouz.air.utils.misc.rememberBooleanPreference
 import com.lazygeniouz.air.utils.work.AdIdResetWorker
 
 class MainActivity : ComponentActivity() {
@@ -49,11 +50,9 @@ fun AdIdResetApp(adIdViewModel: AdIdViewModel) {
     } else {
         val localContext = LocalContext.current
         val navController = rememberNavController()
-        val preference by rememberPreferenceBooleanSettingState(
-            Constants.periodicResetEnabledKey, false
-        )
+        val preference by rememberBooleanPreference(key = Constants.periodicResetEnabledKey, default = false)
 
-        LaunchedEffect(Unit) {
+        OneShotEffect {
             if (preference) AdIdResetWorker.schedule(localContext, false)
         }
 

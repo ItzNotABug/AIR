@@ -10,9 +10,16 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.alorma.compose.settings.storage.preferences.BooleanPreferenceSettingValueState
+import com.alorma.compose.settings.storage.preferences.IntPreferenceSettingValueState
+import com.alorma.compose.settings.storage.preferences.rememberPreferenceBooleanSettingState
+import com.alorma.compose.settings.storage.preferences.rememberPreferenceIntSettingState
 import com.lazygeniouz.air.utils.misc.Constants.gmsPackageName
+import kotlinx.coroutines.CoroutineScope
 
 const val TAG = "AdIdResetApp"
 
@@ -95,6 +102,14 @@ val isAboveOrOnAndroidT get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIR
  */
 val Context.defaultPreferences get() = getSettings("${packageName}_preferences")
 
+val Context.userNotificationsEnabled: Boolean
+    get() {
+        return defaultPreferences.getBoolean(
+            Constants.periodicResetNotificationsKey, true
+        )
+    }
+
+
 /**
  * An empty PendingIntent to cancel the notification on click.
  */
@@ -112,3 +127,18 @@ private val pendingIntentFlag: Int
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         } else PendingIntent.FLAG_UPDATE_CURRENT
     }
+
+@Composable
+fun rememberIntPreference(key: String, default: Int): IntPreferenceSettingValueState {
+    return rememberPreferenceIntSettingState(key = key, defaultValue = default)
+}
+
+@Composable
+fun rememberBooleanPreference(key: String, default: Boolean): BooleanPreferenceSettingValueState {
+    return rememberPreferenceBooleanSettingState(key = key, defaultValue = default)
+}
+
+@Composable
+fun OneShotEffect(block: suspend CoroutineScope.() -> Unit) {
+    LaunchedEffect(Unit, block = block)
+}
