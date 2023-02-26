@@ -3,7 +3,6 @@ package com.lazygeniouz.air.data.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.lazygeniouz.air.data.repository.AdIdRepository
-import com.lazygeniouz.air.utils.misc.Constants
 import com.lazygeniouz.air.utils.misc.isGmsInstalled
 import com.lazygeniouz.air.utils.root.RootHelper
 
@@ -16,8 +15,8 @@ class AdIdViewModel(application: Application) : AndroidViewModel(application) {
     val isGmsInstalled get() = getApplication<Application>().isGmsInstalled()
 
     private fun getAdIdFilePath(): String {
-        return if (isGmsInstalled) Constants.adIdSettingsPath
-        else noGmsAdIdRepository.adIdFilePathOnNonGms
+        return if (isGmsInstalled) AdIdRepository.GMS.adIdFilePath
+        else noGmsAdIdRepository.adIdFilePath
     }
 
     /**

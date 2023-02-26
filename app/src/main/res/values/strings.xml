@@ -4,6 +4,9 @@
     <string name="check">Check</string>
     <string name="adid_reset_prefix">Ad Id Reset %s</string>
 
+    <string name="main_tab">App</string>
+    <string name="settings_tab">Settings</string>
+
     <string name="gms_installed">GMS Installed ✅</string>
     <string name="gms_not_installed">GMS Not Installed ❌</string>
 
@@ -14,6 +17,11 @@
     <string name="reset_ad_button_text">Reset Ad Id</string>
     <string name="paste_adid_button_text">Paste Again</string>
     <string name="placeholder_adid" tools:ignore="TypographyDashes">38400000-8cf0-11bd-b23e-10b96e40000d</string>
+
+    <string name="notification_success_title">Ad ID Deleted</string>
+    <string name="notification_failure_title">Failed to delete Ad ID</string>
+    <string name="notification_failure_message">Its possible that the file was recently deleted</string>
+    <string name="notification_success_message">The file storing Ad Id was successfully deleted</string>
 
     <string name="adid_does_not_exist">
         Ad Id does not exist, probably recently deleted.

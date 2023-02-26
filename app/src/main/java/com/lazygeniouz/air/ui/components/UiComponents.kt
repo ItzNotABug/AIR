@@ -24,8 +24,9 @@ import com.lazygeniouz.air.utils.misc.toast
  * A [Column] widget with centered alignments.
  */
 @Composable
-fun CenteredColumn(content: @Composable ColumnScope.() -> Unit) {
+fun CenteredColumn(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
     Column(
+        modifier = modifier,
         content = content,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally

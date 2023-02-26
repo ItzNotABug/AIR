@@ -11,6 +11,8 @@ import java.io.File
  */
 sealed class AdIdRepository {
 
+    abstract val adIdFilePath: String
+
     abstract val isAdIdFileExists: Boolean
 
     /**
@@ -19,9 +21,14 @@ sealed class AdIdRepository {
     object GMS : AdIdRepository() {
 
         /**
+         * Complete file path of the **adid_settings.xml**.
+         */
+        override val adIdFilePath: String get() = Constants.adIdSettingsPath
+
+        /**
          * Check if the GMS created file i.e. **adid_settings.xml** exists on device.
          */
-        override val isAdIdFileExists: Boolean get() = File(Constants.adIdSettingsPath).exists()
+        override val isAdIdFileExists: Boolean get() = File(adIdFilePath).exists()
     }
 
     /**
@@ -37,14 +44,14 @@ sealed class AdIdRepository {
          *
          * This will be empty on the first launch on devices without No GMS, obviously.
          */
-        val adIdFilePathOnNonGms: String
+        override val adIdFilePath: String
             get() = sharedPreferences.getString(adIdSettingsKey, "") ?: ""
 
         /**
          * Check if the path of the file that stores the Advertising Identifier is saved in local
          * storage.
          */
-        override val isAdIdFileExists: Boolean get() = adIdFilePathOnNonGms.isNotEmpty()
+        override val isAdIdFileExists: Boolean get() = adIdFilePath.isNotEmpty()
 
         /**
          * Save the path of the file that has the provided Advertising Identifier in its contents.

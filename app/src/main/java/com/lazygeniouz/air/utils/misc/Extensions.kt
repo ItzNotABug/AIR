@@ -1,11 +1,17 @@
 package com.lazygeniouz.air.utils.misc
 
+import android.Manifest
+import android.app.Activity
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.lazygeniouz.air.utils.misc.Constants.gmsPackageName
 
 const val TAG = "AdIdResetApp"
@@ -44,3 +50,35 @@ fun Context.isGmsInstalled(): Boolean {
         false
     }
 }
+
+fun Context.notificationPermissionsGranted(): Boolean {
+    return if (isAboveOrOnAndroidT) {
+        ContextCompat.checkSelfPermission(
+            this, Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
+    } else true
+}
+
+fun Context.requestNotificationsPermission() {
+    if (isAboveOrOnAndroidT) {
+        ActivityCompat.requestPermissions(
+            this as Activity, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101
+        )
+    }
+}
+
+val isAboveOrOnAndroidT get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+
+val Context.defaultPreferences get() = getSettings("${packageName}_preferences")
+
+val Context.emptyPendingIntent: PendingIntent
+    get() = PendingIntent.getActivity(
+        this, System.currentTimeMillis().toInt(), Intent(), pendingIntentFlag
+    )
+
+private val pendingIntentFlag: Int
+    get() {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        } else PendingIntent.FLAG_UPDATE_CURRENT
+    }
