@@ -17,7 +17,7 @@ On devices without GMS, you'll have to paste the `Advertising Identifier` ***onc
 can traverse the filesystem & store the path of the file that contains the identifier. This is used
 then to fetch the identifier which can be deleted anytime (if it exists).\
 **Note:** There can be instances where multiple files contain the provided identifier, the path of
-the first file is used in that case.\n
+the first file is used in that case.\
 Yes I do plan to do something about that in the future.
 
 ### But Why?
