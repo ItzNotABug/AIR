@@ -25,12 +25,18 @@ class AdIdResetWorker(
 
     override suspend fun doWork(): Result {
         val adIdFilePath = getAdIdFile()
-        val result = RootHelper.deleteAdIdFile(adIdFilePath)
+        if (!isAdIdFileExists()) {
+            notifyStatus(false)
+            return Result.failure()
+        }
 
-        notifyStatus(result)
+        RootHelper.deleteAdIdFile(adIdFilePath).also { notifyStatus(true) }
+        return Result.success()
+    }
 
-        return if (result) Result.success()
-        else Result.failure()
+    private fun isAdIdFileExists(): Boolean {
+        return if (appContext.isGmsInstalled()) AdIdRepository.GMS.isAdIdFileExists
+        else AdIdRepository.NoGMS(appContext).isAdIdFileExists
     }
 
     private fun notifyStatus(isSuccess: Boolean) {
